@@ -1,0 +1,41 @@
+spring:
+  jmx:
+    enabled: true
+  application:
+    name: Kafka Init
+hddt:
+  kafka:
+    sasl:
+      mechanism: SCRAM-SHA-256
+    concurrency: '9'
+    security-protocol: SASL_PLAINTEXT
+    internal:
+      consumer:
+        max-poll-records: '30'
+        max-poll-interval: '600000'
+        receive-buffer: '1000000'
+        session-timeout: '30000'
+        group-id: local-test
+        topic:
+          test: test-2
+      sasl:
+        jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required
+          username="admin" password="admin-secret" ;
+      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    external:
+      consumer:
+        max-poll-records: '30'
+        max-poll-interval: '600000'
+        receive-buffer: '1000000'
+        session-timeout: '30000'
+        group-id: local-test
+        topic:
+          test: test
+      sasl:
+        jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required
+          username="admin" password="admin-secret" ;
+      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    send-timeout: '60'
+    dummy-produce: true
+port:
+  range: 8888, 9999
