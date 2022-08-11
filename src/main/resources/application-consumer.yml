@@ -13,12 +13,13 @@ hddt:
     internal:
       consumer:
         max-poll-records: '30'
-        max-poll-interval: '600000'
+        max-poll-interval: '10000' # '600000'
         receive-buffer: '1000000'
         session-timeout: '30000'
         group-id: local-test
         topic:
-          test: test-2
+          test: test
+          pause-container: pause_container_topic
       sasl:
         jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required
           username="admin" password="admin-secret" ;
@@ -26,12 +27,13 @@ hddt:
     external:
       consumer:
         max-poll-records: '30'
-        max-poll-interval: '600000'
+        max-poll-interval: '10000' # '600000'
         receive-buffer: '1000000'
         session-timeout: '30000'
         group-id: local-test
         topic:
           test: test
+          pause-container: pause_container_topic
       sasl:
         jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required
           username="admin" password="admin-secret" ;

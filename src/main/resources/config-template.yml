@@ -1,0 +1,30 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    listener:
+      ack-mode: manual_immediate
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 10
+      security:
+        protocol: SASL_PLAINTEXT
+      properties:
+        sasl:
+          mechanism: SCRAM-SHA-256
+          jaas:
+            config: org.apache.kafka.common.security.scram.ScramLoginModule required
+              username="admin" password="admin-secret";
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      security:
+        protocol: SASL_PLAINTEXT
+      properties:
+        sasl:
+          mechanism: SCRAM-SHA-256
+          jaas:
+            config: org.apache.kafka.common.security.scram.ScramLoginModule required
+              username="admin" password="admin-secret";
