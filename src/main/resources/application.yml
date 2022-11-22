@@ -17,8 +17,7 @@ hddt:
         receive-buffer: '1000000'
         session-timeout: '30000'
         group-id: local-test
-        topic:
-          test: test-2
+        topic: # Topic variables goes here
       sasl:
         jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required
           username="admin" password="admin-secret" ;
@@ -41,7 +40,3 @@ hddt:
 
 server:
   port: 9001
-
-kafka:
-  container:
-    id: "pause_container_id"
