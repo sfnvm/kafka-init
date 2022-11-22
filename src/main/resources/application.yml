@@ -8,7 +8,7 @@ hddt:
   kafka:
     sasl:
       mechanism: SCRAM-SHA-256
-    concurrency: '9'
+    concurrency: '10'
     security-protocol: SASL_PLAINTEXT
     internal:
       consumer:
@@ -36,7 +36,6 @@ hddt:
           username="admin" password="admin-secret" ;
       bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
     send-timeout: '60'
-    dummy-produce: false
 
 server:
   port: 9001
