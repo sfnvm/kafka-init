@@ -3,6 +3,7 @@ package com.example.kafka.config;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -18,6 +19,9 @@ import java.util.Map;
 @EnableKafka
 public class KafkaExternalConfig {
   private final KafkaCommonConfig kafkaCommonConfig;
+
+  @Value("${hddt.kafka.concurrency:10}")
+  private Integer concurrency;
 
   @Autowired
   public KafkaExternalConfig(KafkaCommonConfig kafkaCommonConfig) {
@@ -53,7 +57,7 @@ public class KafkaExternalConfig {
     ConcurrentKafkaListenerContainerFactory<String, String> factory =
       new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerExternalFactory());
-    factory.setConcurrency(2); // TODO: concurrency
+    factory.setConcurrency(concurrency);
     factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
     return factory;
   }

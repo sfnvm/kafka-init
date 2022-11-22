@@ -31,9 +31,6 @@ public class KafkaCommonConfig {
   @Value("${hddt.kafka.external.bootstrap-servers}")
   private String bootstrapServers;
 
-  @Value("${hddt.kafka.concurrency:10}")
-  private Integer concurrency;
-
   @Value("${hddt.kafka.external.consumer.group-id:message}")
   private String groupId;
 
